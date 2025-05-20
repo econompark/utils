@@ -1,12 +1,14 @@
 mata:
 real matrix recover(real matrix data) {
-	real scalar    v, p, colsData, numPanel, firstIndex, lastIndex, firstValue, missCount
+	real scalar    v, p, rowsData, colsData, numPanel, firstIndex, lastIndex, firstValue, missCount
 	real colvector missIndex
 	real rowvector panelStat
 	real matrix    dataRecovered, panelInfo, dataTemp, subMatrix
 
 	colsData      = cols(data)
-	dataRecovered = sort(data, 1)
+	rowsData      = rows(data)
+	dataRecovered = data, (1::rowsData)
+	_sort(dataRecovered, 1)
 	panelInfo     = panelsetup(dataRecovered, 1)
 	panelStat     = panelstats(panelInfo)
 	numPanel      = panelStat[1]
@@ -28,6 +30,7 @@ real matrix recover(real matrix data) {
 			dataRecovered[(firstIndex::lastIndex), v] = subMatrix
 		}
 	}
-	return(dataRecovered)
+	_sort(dataRecovered, (colsData + 1))
+	return(dataRecovered[, 2 .. colsData])
 }
 end
