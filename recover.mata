@@ -13,7 +13,7 @@ real matrix recover(real matrix data) {
 	
 	for (v = 2; v <= colsData; v++) {
 		dataTemp = dataRecovered[, (1, v)]
-		dataTemp = sort(dataTemp, (1, 2))
+		_sort(dataTemp, (1, 2))
 		
 		for (p = 1; p <= numPanel; p++) {
 			firstIndex = panelInfo[p, 1]
