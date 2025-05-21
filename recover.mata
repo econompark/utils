@@ -1,10 +1,11 @@
 mata:
-real matrix recover(real matrix data) {
+real matrix recover(real colvector from, real matrix varlist) {
 	real scalar    v, p, rowsData, colsData, numPanel, firstIndex, lastIndex, firstValue, missCount
 	real colvector missIndex
 	real rowvector panelStat
-	real matrix    dataRecovered, panelInfo, dataTemp, subMatrix
+	real matrix    data, dataRecovered, panelInfo, dataTemp, subMatrix
 
+	data          = from, varlist
 	colsData      = cols(data)
 	rowsData      = rows(data)
 	dataRecovered = data, (1::rowsData)
